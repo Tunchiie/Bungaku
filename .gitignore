@@ -1,0 +1,9 @@
+/pdfs/
+/spotify_data/
+*.env
+*.json
+/data/raw/
+/data/prem_data/
+/data/spotify_data/
+/prem_notebooks/
+*.md
