@@ -7,3 +7,4 @@
 /data/spotify_data/
 /prem_notebooks/
 *.md
+*.cache
