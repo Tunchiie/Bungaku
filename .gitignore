@@ -9,4 +9,5 @@
 !data/processed/**
 !Images/
 !Images/**
+!requirements.txt
 
