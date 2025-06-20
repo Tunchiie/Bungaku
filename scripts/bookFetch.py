@@ -12,10 +12,16 @@ logging.getLogger("pdfminer").setLevel(logging.ERROR)
 logging.getLogger("pdfplumber").setLevel(logging.ERROR)
 
 
-class pdfParser:
+class bookFetch:
     def __init__(self):
         self.api_call_count = 0
         self.books_key = os.getenv("BOOKS_KEY")
+        service_account_path = os.getenv(
+            "SERVICE_ACCOUNT_PATH", "../bungaku_cloud_trans.json"
+        )
+        self.translator = translate.Client.from_service_account_json(
+            service_account_path
+        )
 
     def parse_single_entry(self, text, category, date):
         """
@@ -198,7 +204,7 @@ class pdfParser:
                                     "description": result.get("description")
                                     if "description" in result
                                     and result.get("language") == "en"
-                                    else translate(result.get("description")),
+                                    else self.translate(result.get("description")),
                                     "categories": result.get("categories")
                                     if "categories" in result
                                     else None,
@@ -208,28 +214,34 @@ class pdfParser:
                             continue
                     time.sleep(2)
                 detailed_count += 1
-                if detailed_count > 0 and detailed_count % 100 == 0:
-                    self.save_cache(cache)
+                pass
         finally:
-            self.save_cache(cache)
+            if detailed_count > 0:
+                self.save_cache(cache)
             return "Ok"
 
     def translate(self, description):
         """
         Detect the language of each description and translate it to English if necessary.
         """
-        translator = translate.Client.from_service_account_json(
-            "../bungaku_cloud_trans.json"
-        )
+        translator = self.translator
         description = self.clean_text(description)
-
+        translation = None
         try:
-            detect_lang = translator.detect_language(description)["language"]
-            if detect_lang != "en":
-                translation = translator.translate(
-                    description, source_language=detect_lang, target_language="en"
-                )
-                return translation.get("translatedText")
-
+            if description:
+                detect_response = translator.detect_language(description)
+                detect_lang = detect_response.get("language")
+                if detect_lang and detect_lang != "en":
+                    translation = translator.translate(
+                        description, source_language=detect_lang, target_language="en"
+                    )
+                    if "translatedText" in translation:
+                        return translation["translatedText"]
         except Exception as e:
-            print(f"Failed to translate: {e}")
+            truncated_description = (
+                description[:50] + "..."
+                if description and len(description) > 50
+                else description
+            )
+            print(f"Failed to translate: {e}. Description: {truncated_description}")
+            return translation.get("translatedText")

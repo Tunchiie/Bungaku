@@ -3,10 +3,21 @@ import time
 import json
 import re
 import spotipy
+import pandas as pd
 from dotenv import load_dotenv
 from tqdm import tqdm
 from spotipy import SpotifyOAuth
 from rapidfuzz import fuzz
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import TimeoutException
+
+options = Options()
+options.headless = False  # Important during debug
+
 
 file_name = "../var.env"
 load_dotenv(file_name)
@@ -25,7 +36,6 @@ class SearchSpoti:
             ),
             requests_timeout=30,
         )
-
     def load_cache(self, path):
         """
         loads previously saved API responses (if available)
@@ -91,7 +101,7 @@ class SearchSpoti:
         user_id = me["id"]
 
         cache = self.load_cache(path)
-        playlist_count = 1
+        playlist_count = 45
         batch = []
 
         for key, uri in tqdm(cache.items()):
@@ -108,13 +118,24 @@ class SearchSpoti:
                 playlist_count += 1
                 batch = []
                 time.sleep(1)
+        if batch:
+            playlist = self.sp.user_playlist_create(
+                user=user_id, name=f"Billboard 100_{playlist_count}_unm"
+            )
+            self.sp.playlist_add_items(
+                playlist_id=playlist["id"],
+                items=batch,
+            )
+            playlist_count += 1
+            batch = []
+            time.sleep(1)
 
     def search_uri(self, batch):
         """
         Search for song uri's using spotipy search method
         and store it in a cache.
         """
-        cache = self.load_cache()
+        cache = self.load_cache("../data/raw/unmatched_uri_cache.json")
 
         for song in tqdm(batch):
             key = f"{song['song_name']} - {song['artist']}"
@@ -136,7 +157,7 @@ class SearchSpoti:
                     retry_after = int(error.headers.get("Retry-After", 60))
                     print(f"Rate limit hit. Retrying after {retry_after} seconds.")
                     time.sleep(retry_after)
-        self.save_cache(cache)
+        self.save_cache(cache, "../data/raw/unmatched_uri_cache.json")
 
     def clean_string(self, text):
         """
@@ -147,3 +168,41 @@ class SearchSpoti:
         text = re.sub(r"\(.*?\)", "", text)
         text = re.sub(r"[^a-z0-9\s]", "", text)
         return text.strip()
+    
+    def search_uri_sel(self, songs):
+        
+        try:
+            driver = webdriver.Chrome()
+            driver.set_page_load_timeout(15)
+            cache = self.load_cache("../data/raw/uri_updated.json")
+            for i,row in tqdm(songs.iterrows()):
+        
+                try:
+                    song = row["song_clean"]
+                    artist = row["artist_clean"]
+                    key = f"{song} - {artist}"
+                    if key not in cache:
+                        query = f"https://open.spotify.com/search/{song}%20{artist}"
+    
+                        driver.get(query)
+                        wait = WebDriverWait(driver, 15)
+                        song_element = wait.until(EC.presence_of_element_located((By.XPATH, '//a[contains(@href, "/track/")]')))
+                        artist_element = wait.until(EC.presence_of_element_located((By.XPATH, '//a[contains(@href, "/artist/")]')))
+                        spoti_artist = artist_element.text.strip()
+                        artist_score = fuzz.ratio(artist, spoti_artist)
+                        if artist_score > 0.80:
+                            href = song_element.get_attribute("href")
+                            uri = f"spotify:track:{href.split('/')[-1]}"
+                            if uri:
+                                cache[key] = uri
+                        time.sleep(2)
+                except TimeoutException:
+                    driver.execute_script("window.stop();")
+                    continue
+                except Exception:
+                    continue
+                if (i % 200) == 0:
+                    self.save_cache(cache, "../data/raw/uri_updated.json")
+        finally:
+            driver.quit()
+            self.save_cache(cache, "../data/raw/uri_updated.json")

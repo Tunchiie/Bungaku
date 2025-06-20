@@ -1,14 +1,12 @@
-/pdfs/
-/spotify_data/
-*.env
-*.json
-/data/raw/
-/data/prem_data/
-/data/spotify_data/
-/prem_notebooks/
-*.md
-*.cache
-/prem_notebooks/
-/.vscode/
-__pycache__/
-*.py[cod]
+# Ignorea all files by default
+*
+
+# Except:
+!.gitignore
+!notebooks/
+!notebooks/**
+!data/processed/
+!data/processed/**
+!Images/
+!Images/**
+
