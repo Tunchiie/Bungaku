@@ -145,11 +145,11 @@ This project focused purely on data analysis, without predictive modeling. Futur
 - `matplotlib`, `seaborn`
 - `scikit-learn`
 - `scipy`, `statsmodels`
-- `spotipy`  *(for Spotify API-based feature matching)*
+- `spotipy`  **(for Spotify API-based feature matching)**
 - `jupyter`
 ```
 
 ## Author
 
 **Adetunji Fasiku**  
-[LinkedIn](https://www.linkedin.com/in/adetunji-fasiku/) • [GitHub](https://github.com/tunchiie)2
+[LinkedIn](https://www.linkedin.com/in/adetunji-fasiku/) • [GitHub](https://github.com/tunchiie)
