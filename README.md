@@ -135,7 +135,7 @@ This part of the project focused on how individual audio features relate to hit 
   - **Winter** tracks tend to be quieter and more acoustic.
   - **Summer/Fall** tracks lean louder and more energetic.
   
-![ Plot](Images/average_feature_by_season.png)
+![ Plot](Images/average_features_by_season.png)
 
 
 ---
