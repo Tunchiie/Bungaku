@@ -67,6 +67,7 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 
 ##### Audio Characteristics of Charting Tracks
 ![Violin P;ot](Images/tempo_violin_dist_EDA.png)
+
 - **Tempo**: Most songs fall between **95–145 BPM**, clustering around **120 BPM**, a sweet spot for dancing and engagement.
 - **Danceability**: Values typically range between **0.55 and 0.75**, suggesting charting songs are groovable but not overly dance-focused.
 - **Energy**: High energy is a staple — most tracks fall between **0.6 and 0.85**, reflecting upbeat production.
@@ -107,6 +108,8 @@ This part of the project focused on how individual audio features relate to hit 
 ---
 
 ##### Behavioral Patterns
+![ Plot](Images/hit_rate_by_audio_feature.png)
+
 - **Hit rate binning** revealed that certain feature value ranges (e.g., mid-range `loudness` and `speechiness`) are associated with a higher probability of becoming a hit.
 - **Pairplots** showed low linear separability between hits and non-hits, suggesting that **feature combinations** matter more than individual values.
 
@@ -119,6 +122,9 @@ This part of the project focused on how individual audio features relate to hit 
 - **Violin plots** revealed that:
   - Hit songs have become louder and more tightly clustered in `loudness`.
   - `Acousticness` and `Instrumentalness` have generally declined in modern hits.
+  
+![ Plot](Images/Tempo_violin_plot.png)
+
 
 ---
 
@@ -128,6 +134,9 @@ This part of the project focused on how individual audio features relate to hit 
 - **Z-score normalized heatmaps** visualized these shifts clearly:
   - **Winter** tracks tend to be quieter and more acoustic.
   - **Summer/Fall** tracks lean louder and more energetic.
+  
+![ Plot](Images/average_feature_by_season.png)
+
 
 ---
 
