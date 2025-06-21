@@ -10,4 +10,6 @@
 !Images/
 !Images/**
 !requirements.txt
+!reports/
+!reports/**
 
