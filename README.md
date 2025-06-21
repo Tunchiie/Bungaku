@@ -66,14 +66,21 @@ bungaku/
 After exploring audio features across 130K+ Billboard Hot 100 entries, several patterns emerge about what defines a typical charting track:
 
 ##### Audio Characteristics of Charting Tracks
+![Violin P;ot](Images/tempo_violin_dist_EDA.png)
 - **Tempo**: Most songs fall between **95–145 BPM**, clustering around **120 BPM**, a sweet spot for dancing and engagement.
 - **Danceability**: Values typically range between **0.55 and 0.75**, suggesting charting songs are groovable but not overly dance-focused.
 - **Energy**: High energy is a staple — most tracks fall between **0.6 and 0.85**, reflecting upbeat production.
+
+![Violin Plot](Images/valence_violin_dist_EDA.png)
+
 - **Valence (Mood)**: Songs span both happy and sad moods, indicating no clear bias based on emotional tone.
 - **Loudness**: Most tracks sit between **-7 and -4 dB**, favoring polished, loud studio production.
 - **Speechiness**: The majority of songs have **low speechiness**, meaning they are sung rather than spoken.
 - **Acousticness**: Tracks are overwhelmingly **digitally produced**, with purely acoustic songs being rare (likely reserved for live recordings).
 - **Instrumentalness**: Hit songs are almost always **vocal-driven**; instrumental tracks are practically absent.
+
+![Violin Plot](Images/liveness_box_dist_EDA.png)
+  
 - **Liveness**: Most songs do **not** sound live, reinforcing a strong preference for clean, controlled studio production.
 
 ##### Musical Structure
