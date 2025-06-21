@@ -123,7 +123,7 @@ This part of the project focused on how individual audio features relate to hit 
   - Hit songs have become louder and more tightly clustered in `loudness`.
   - `Acousticness` and `Instrumentalness` have generally declined in modern hits.
   
-![ Plot](Images/Tempo_violin_plot.png)
+![Plot](Images/Tempo_violin_plot.png)
 
 
 ---
@@ -135,7 +135,7 @@ This part of the project focused on how individual audio features relate to hit 
   - **Winter** tracks tend to be quieter and more acoustic.
   - **Summer/Fall** tracks lean louder and more energetic.
   
-![ Plot](Images/average_features_by_season.png)
+![Plot](Images/average_featur_by_season.png)
 
 
 ---
