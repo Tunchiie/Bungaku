@@ -21,7 +21,7 @@ The dataset combines scraped Billboard Hot 100 chart data (2000–2025) with Spo
 
 - Instrumentalness
 
-For deeper analysis, additional fields were engineered — including season, decade, and hit status, defined by Top 10 appearance and chart longevity. Only tracks with valid dates and successfully matched Spotify audio features were included.
+For deeper analysis, additional fields were engineered including season, decade, and hit status, defined by Top 10 appearance and chart longevity. Only tracks with valid dates and successfully matched Spotify audio features were included.
 
 ### Key Questions
 - Which audio features most strongly correlate with a song becoming a hit?
@@ -70,7 +70,7 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 
 - **Tempo**: Most songs fall between **95–145 BPM**, clustering around **120 BPM**, a sweet spot for dancing and engagement.
 - **Danceability**: Values typically range between **0.55 and 0.75**, suggesting charting songs are groovable but not overly dance-focused.
-- **Energy**: High energy is a staple — most tracks fall between **0.6 and 0.85**, reflecting upbeat production.
+- **Energy**: High energy is a staple and most tracks fall between **0.6 and 0.85**, reflecting upbeat production.
 
 ![Violin Plot](Images/valence_violin_dist_EDA.png)
 
@@ -86,7 +86,7 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 
 ##### Musical Structure
 - **Key**: Songs in **C, D, and G** dominate the charts. Other keys appear less frequently, likely due to vocal or instrumental constraints.
-- **Time Signature**: **4/4** is overwhelmingly dominant — the rhythmic foundation of most Western pop music.
+- **Time Signature**: **4/4** is overwhelmingly dominant and the rhythmic foundation of most Western pop music.
 
 ---
 
