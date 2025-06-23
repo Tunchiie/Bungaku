@@ -77,10 +77,13 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 - **Valence (Mood)**: Songs span both happy and sad moods, indicating no clear bias based on emotional tone.
 - **Loudness**: Most tracks sit between **-7 and -4 dB**, favoring polished, loud studio production.
 - **Speechiness**: The majority of songs have **low speechiness**, meaning they are sung rather than spoken.
+   
+![KDE Plot](Images/speechiness_dist_plot_EDA.png)
+
 - **Acousticness**: Tracks are overwhelmingly **digitally produced**, with purely acoustic songs being rare (likely reserved for live recordings).
 - **Instrumentalness**: Hit songs are almost always **vocal-driven**; instrumental tracks are practically absent.
 
-![Violin Plot](Images/liveness_box_dist_EDA.png)
+![box Plot](Images/liveness_box_dist_EDA.png)
   
 - **Liveness**: Most songs do **not** sound live, reinforcing a strong preference for clean, controlled studio production.
 
@@ -123,7 +126,7 @@ This part of the project focused on how individual audio features relate to hit 
   - Hit songs have become louder and more tightly clustered in `loudness`.
   - `Acousticness` and `Instrumentalness` have generally declined in modern hits.
   
-![Plot](Images/Tempo_violin_plot.png)
+![Plot](Images/Loudness_violin_plot.png)
 
 
 ---
@@ -135,7 +138,7 @@ This part of the project focused on how individual audio features relate to hit 
   - **Winter** tracks tend to be quieter and more acoustic.
   - **Summer/Fall** tracks lean louder and more energetic.
   
-![Plot](Images/average_features_by_season.png)
+![heatmap_Plot](Images/average_features_by_season.png)
 
 
 ---
@@ -146,10 +149,10 @@ No single feature defines a hit, but a **combination of feature values**, their 
 ## Future Work
 This project focused purely on data analysis, without predictive modeling. Future extensions could include:
 
-- Incorporating **artist** and **record label** metadata to assess external influence on chart success
+- Incorporating analysis of **artist** and **record label** metadata to assess external influence on chart success
 - Building a **classification model** to predict hit status based on combined audio features and temporal context
 - Expanding to include **lyrics sentiment** or **genre** for a more nuanced understanding of musical content
-- Connecting music trends with **cultural shifts** by analyzing text-based data (e.g., from books, news, or social media) to align with the broader *Bungaku* vision
+- Connecting music trends with **cultural shifts** by analyzing text-based data (e.g., from books, news, or social media) to align with the broader *Bungaku* vision of clustering song genre with similar book genres
 
 
 ---
