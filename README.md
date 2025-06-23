@@ -78,7 +78,7 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 - **Loudness**: Most tracks sit between **-7 and -4 dB**, favoring polished, loud studio production.
 - **Speechiness**: The majority of songs have **low speechiness**, meaning they are sung rather than spoken.
    
-![KDE Plot](Images/speechiness_dist_plot_EDA.png)
+![KDE Plot](Images/Speechiness_dist_plot_EDA.png)
 
 - **Acousticness**: Tracks are overwhelmingly **digitally produced**, with purely acoustic songs being rare (likely reserved for live recordings).
 - **Instrumentalness**: Hit songs are almost always **vocal-driven**; instrumental tracks are practically absent.
