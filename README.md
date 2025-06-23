@@ -66,15 +66,16 @@ bungaku/
 After exploring audio features across 130K+ Billboard Hot 100 entries, several patterns emerge about what defines a typical charting track:
 
 ##### Audio Characteristics of Charting Tracks
+- **Tempo**: Most songs fall between **95–145 BPM**, clustering around **120 BPM**, a sweet spot for dancing and engagement.
+  
 ![Violin P;ot](Images/tempo_violin_dist_EDA.png)
 
-- **Tempo**: Most songs fall between **95–145 BPM**, clustering around **120 BPM**, a sweet spot for dancing and engagement.
 - **Danceability**: Values typically range between **0.55 and 0.75**, suggesting charting songs are groovable but not overly dance-focused.
 - **Energy**: High energy is a staple and most tracks fall between **0.6 and 0.85**, reflecting upbeat production.
+- **Valence (Mood)**: Songs span both happy and sad moods, indicating no clear bias based on emotional tone.
 
 ![Violin Plot](Images/valence_violin_dist_EDA.png)
-
-- **Valence (Mood)**: Songs span both happy and sad moods, indicating no clear bias based on emotional tone.
+  
 - **Loudness**: Most tracks sit between **-7 and -4 dB**, favoring polished, loud studio production.
 - **Speechiness**: The majority of songs have **low speechiness**, meaning they are sung rather than spoken.
    
@@ -82,10 +83,9 @@ After exploring audio features across 130K+ Billboard Hot 100 entries, several p
 
 - **Acousticness**: Tracks are overwhelmingly **digitally produced**, with purely acoustic songs being rare (likely reserved for live recordings).
 - **Instrumentalness**: Hit songs are almost always **vocal-driven**; instrumental tracks are practically absent.
+- **Liveness**: Most songs do **not** sound live, reinforcing a strong preference for clean, controlled studio production.
 
 ![box Plot](Images/liveness_box_dist_EDA.png)
-  
-- **Liveness**: Most songs do **not** sound live, reinforcing a strong preference for clean, controlled studio production.
 
 ##### Musical Structure
 - **Key**: Songs in **C, D, and G** dominate the charts. Other keys appear less frequently, likely due to vocal or instrumental constraints.
@@ -111,9 +111,10 @@ This part of the project focused on how individual audio features relate to hit 
 ---
 
 ##### Behavioral Patterns
-![ Plot](Images/hit_rate_by_audio_feature.png)
-
 - **Hit rate binning** revealed that certain feature value ranges (e.g., mid-range `loudness` and `speechiness`) are associated with a higher probability of becoming a hit.
+
+![ Plot](Images/hit_rate_by_audio_feature.png)
+  
 - **Pairplots** showed low linear separability between hits and non-hits, suggesting that **feature combinations** matter more than individual values.
 
 ---
